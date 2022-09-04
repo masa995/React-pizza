@@ -1,28 +1,22 @@
-import { React, useState, memo } from 'react'
+import { React, memo } from 'react'
+import PropTypes from "prop-types"
 
-function Categories({ items, onClickItem }) {
-
-  const [activeItem, setActiveItem] = useState(null);
-
-  const selectItem = (index) => {
-    setActiveItem(index);
-    onClickItem(index);
-  }
+function Categories({ items, onClickCategory, activeCategory }) {
 
   return (
     <div className="categories">
       <ul>
         <li
-          onClick={() => { selectItem(null) }}
-          className={activeItem === null ? "active" : ""}
+          onClick={() => { onClickCategory(null) }}
+          className={activeCategory === null ? "active" : ""}
         >
           Все</li>
         {items.map((name, index) => (
           items &&
           <li
-            className={activeItem === index ? "active" : ""}
+            className={activeCategory === index ? "active" : ""}
             key={`${name}_${index}`}
-            onClick={() => selectItem(index)}
+            onClick={() => onClickCategory(index)}
           //Если просто написать onClick={onClick(name)}, то функция сразу выполнится при рендере компонента, а за тем не будет выполнятся
           //() => {} - каждый раз когда перерендыревается элемент создается новая анонимная функция
           >
@@ -37,5 +31,13 @@ function Categories({ items, onClickItem }) {
 // React.memo является компонентом более высокого порядка.
 
 // Если ваш компонент отображает тот же результат с использованием тех же пропсов, вы можете обернуть его в вызов React.memo для повышения производительности в некоторых случаях путем запоминания результата.
+
+Categories.propTypes = {
+  activeCategory: PropTypes.number,
+  items: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onClickCategory: PropTypes.func.isRequired,
+};
+
+Categories.defaultProps = { activeCategory: null, items: [] };
 
 export default memo(Categories)

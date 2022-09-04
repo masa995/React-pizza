@@ -1,24 +1,28 @@
 //Начальное состояние
 const initialState = {
   category: null,
-  sortBy: "popular"
+  sortBy: {
+    type: "popular",
+    order: "desc"
+  }
 }
 
 //редусер
 const filters = (state = initialState, action) => {
-  if (action.type === "SET_SORT_BY") {
-    return {
-      ...state, //неглубокое копированиие
-      sortBy: action.payload
-    };
+  switch (action.type) {
+    case "SET_SORT_BY":
+      return {
+        ...state, //неглубокое копированиие
+        sortBy: action.payload
+      }
+    case "SET_CATEGORY":
+      return {
+        ...state, //неглубокое копированиие
+        category: action.payload
+      }
+    default:
+      return state;
   }
-  else if (action.type === "SET_CATEGORY") {
-    return {
-      ...state, //неглубокое копированиие
-      sortBy: action.payload
-    }
-  }
-  return state;
 }
 
 export default filters;

@@ -12,9 +12,11 @@ export const setLoadedAction = (booleanKey) => ({
 })
 
 //redux-thunk
-export const fetchPizzas = () => (dispatch) => {
+export const fetchPizzas = (category, sortBy) => (dispatch) => {
   dispatch(setLoadedAction(false)); // пока контент не загрузился ставим заглушку
-  fetch("http://localhost:3001/pizzas").then((response) => response.json()).then((json) => {
-    dispatch(setPizzasAction(json)) //сохроняем состояние в store
-  });
+  fetch(`/pizzas?${category !== null ? `category=${category}` : ''}&_sort=${sortBy.type}&_order=${sortBy.order}`)
+    .then((response) => response.json()).then((json) => {
+      dispatch(setPizzasAction(json)) //сохроняем состояние в store
+    })
+    .catch((e) => console.error("Ошибка отправки"));
 }

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types"
-
 import classNames from "classnames";
 
-function PizzaBlock({ id, imageUrl, name, price, rating, sizes, types }) {
+import { Button } from "../index";
+
+function PizzaBlock({ id, imageUrl, name, price, sizes, types, addPizzaToCart, cartAddedCount }) {
   const availableSize = [26, 30, 40];
   const availableType = ["тонкое", "традиционное"];
 
@@ -14,12 +15,24 @@ function PizzaBlock({ id, imageUrl, name, price, rating, sizes, types }) {
     setActiveTypes(index)
   }
 
-  const selectActiveSize = (index) => {
-    setActiveSizes(index)
+  const selectActiveSize = (size) => {
+    setActiveSizes(size)
+  }
+
+  const addPizza = () => {
+    const obj = {
+      id,
+      name,
+      price,
+      sizes: activeSizes,
+      types: availableType[activeTypes]
+    }
+    addPizzaToCart(obj)
   }
 
   return (
-    <div className="pizza-block">
+    <div
+      className="pizza-block">
       <img
         className="pizza-block__image"
         src={imageUrl}
@@ -46,9 +59,9 @@ function PizzaBlock({ id, imageUrl, name, price, rating, sizes, types }) {
             // console.log(type, index),
             <li
               key={`${size}_${index}`}
-              onClick={() => selectActiveSize(index)}
+              onClick={() => selectActiveSize(size)}
               className={classNames({
-                active: activeSizes === index,
+                active: activeSizes === size,
                 disabled: !sizes.includes(size)
               })}
             >
@@ -58,7 +71,11 @@ function PizzaBlock({ id, imageUrl, name, price, rating, sizes, types }) {
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">{price} ₽</div>
-        <div className="button button--outline button--add">
+        <Button
+          outline
+          addPizza
+          onClickAddPizzaToCart={addPizza}
+        >
           <svg
             width="12"
             height="12"
@@ -72,8 +89,9 @@ function PizzaBlock({ id, imageUrl, name, price, rating, sizes, types }) {
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
-        </div>
+          {cartAddedCount &&
+            <i>{cartAddedCount}</i>}
+        </Button>
       </div>
     </div>
   )
@@ -84,7 +102,9 @@ PizzaBlock.propTypes = {
   imageUrl: PropTypes.string,
   price: PropTypes.number,
   types: PropTypes.arrayOf(PropTypes.number), //массив чисел
-  sizes: PropTypes.arrayOf(PropTypes.number) //массив чисел
+  sizes: PropTypes.arrayOf(PropTypes.number), //массив чисел
+  addPizzaToCart: PropTypes.func,
+  cartAddedCount: PropTypes.number
 };
 
 PizzaBlock.defaultProps = {
