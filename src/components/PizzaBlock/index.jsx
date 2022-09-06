@@ -19,11 +19,11 @@ function PizzaBlock({ id, imageUrl, name, price, sizes, types, addPizzaToCart, c
     setActiveSizes(size)
   }
 
-  const addPizza = () => {
+  const addPizzaObj = () => {
     const obj = {
       id,
       name,
-      price,
+      price: price[String(activeSizes)],
       imageUrl,
       size: activeSizes,
       type: availableType[activeTypes],
@@ -70,11 +70,11 @@ function PizzaBlock({ id, imageUrl, name, price, sizes, types, addPizzaToCart, c
         </ul>
       </div>
       <div className="pizza-block__bottom">
-        <div className="pizza-block__price">{price} ₽</div>
+        <div className="pizza-block__price">{price[String(activeSizes)]} ₽</div>
         <Button
           outlineStyle
           addPizzaStyle
-          onClickAddPizzaToCart={addPizza}
+          onClickAddPizzaToCart={addPizzaObj}
         >
           <svg
             width="12"
