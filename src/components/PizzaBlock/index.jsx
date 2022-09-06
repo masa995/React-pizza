@@ -24,8 +24,9 @@ function PizzaBlock({ id, imageUrl, name, price, sizes, types, addPizzaToCart, c
       id,
       name,
       price,
-      sizes: activeSizes,
-      types: availableType[activeTypes]
+      imageUrl,
+      size: activeSizes,
+      type: availableType[activeTypes],
     }
     addPizzaToCart(obj)
   }
@@ -42,7 +43,6 @@ function PizzaBlock({ id, imageUrl, name, price, sizes, types, addPizzaToCart, c
       <div className="pizza-block__selector">
         <ul>
           {availableType.map((type, index) => (
-            // console.log(type, index),
             <li
               key={`${type}_${index}`}
               onClick={() => (selectActiveType(index))}
@@ -72,8 +72,8 @@ function PizzaBlock({ id, imageUrl, name, price, sizes, types, addPizzaToCart, c
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">{price} ₽</div>
         <Button
-          outline
-          addPizza
+          outlineStyle
+          addPizzaStyle
           onClickAddPizzaToCart={addPizza}
         >
           <svg

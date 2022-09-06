@@ -1,13 +1,13 @@
 import React from "react";
 import classNames from "classnames";
 
-const Button = ({ className, outline, addPizza, onClickAddPizzaToCart, children }) => {
+const Button = ({ className, outlineStyle, addPizzaStyle, onClickAddPizzaToCart, children }) => {
   return (
     <button
       onClick={onClickAddPizzaToCart}
       className={classNames('button', className, {
-        'button--outline': outline,
-        'button--add': addPizza,
+        'button--outline': outlineStyle,
+        'button--add': addPizzaStyle,
       })}
     >
       {children}

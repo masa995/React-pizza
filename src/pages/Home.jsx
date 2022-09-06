@@ -51,9 +51,9 @@ function Home() {
     }
   })
 
-  const { cartItems } = useSelector((state) => {
+  const { countPizzas } = useSelector((state) => {
     return {
-      cartItems: state.cart.items
+      countPizzas: state.cart.countTypesOfId
     }
   })
 
@@ -101,7 +101,7 @@ function Home() {
               {...item} //передаем все свойства разом
               key={item.id}
               addPizzaToCart={handleAddPizzaToCart}
-              cartAddedCount={cartItems[item.id] && cartItems[item.id].length}
+              cartAddedCount={countPizzas[item.id]}
             />
           ))
           : Array(12).fill(0).map((val, index) => (
