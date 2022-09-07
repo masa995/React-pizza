@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import { Button } from "../index";
@@ -74,7 +74,7 @@ function PizzaBlock({ id, imageUrl, name, price, sizes, types, addPizzaToCart, c
         <Button
           outlineStyle
           addPizzaStyle
-          onClickAddPizzaToCart={addPizzaObj}
+          onClick={addPizzaObj}
         >
           <svg
             width="12"
@@ -100,7 +100,7 @@ function PizzaBlock({ id, imageUrl, name, price, sizes, types, addPizzaToCart, c
 PizzaBlock.propTypes = {
   name: PropTypes.string,
   imageUrl: PropTypes.string,
-  price: PropTypes.number,
+  price: PropTypes.object,
   types: PropTypes.arrayOf(PropTypes.number), //массив чисел
   sizes: PropTypes.arrayOf(PropTypes.number), //массив чисел
   addPizzaToCart: PropTypes.func,
@@ -109,7 +109,7 @@ PizzaBlock.propTypes = {
 
 PizzaBlock.defaultProps = {
   name: "---",
-  price: 0,
+  price: {},
   types: [],
   sizes: []
 }

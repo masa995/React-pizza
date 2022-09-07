@@ -5,7 +5,7 @@ import Button from "../components/Button";
 import logo from '../assets/img/pizza-logo.svg';
 import { useSelector } from "react-redux";
 
-const Header = () => {
+function Header() {
   const { totalPrice, totalCount } = useSelector((state) => {
     return {
       totalPrice: state.cart.totalPrice,
