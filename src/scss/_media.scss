@@ -1,0 +1,180 @@
+// .pizza-block:not(:nth-of-type(4n))
+
+@media(max-width: 1460px){
+  .pizza-block:not(:nth-of-type(4n)){
+    margin-right: 0;
+  }
+
+  .pizza-block{
+    margin: 15px;
+  }
+
+  .content__items{
+    justify-content: space-evenly;
+  }
+
+}
+
+@media(max-width: 1200px){
+  .categories {
+    width: 65%;
+  }
+}
+
+@media(max-width: 1110px){
+  .button--menu{
+    display: block;
+    position: relative;
+    z-index: 10;
+  }
+  .categories {
+    position: fixed;
+    left: 50px;
+    top: var(--top);
+    z-index: 5;
+    width: calc(100vw - 100px); 
+    background-color: #fff;
+  }
+
+  .categories::before{
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    width: 100%;
+    height: 55px;
+    background-color: #fff;
+  }
+
+  .categories ul {
+    position: fixed;
+    top: var(--top);
+    left: 50px;
+    bottom: 0;
+    width: calc(100vw - 100px); 
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    margin: 0 auto;
+    padding: 55px 0;
+    background-color: #fff;
+    overflow: auto;
+  }
+
+  .categories ul li {
+    margin-right: 0;
+    padding: 13px 20px;
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+}
+
+@media(max-width: 771px){
+  .header .container{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header__cart{
+    margin-top: 40px;
+  }
+}
+
+@media(max-width: 631px){
+  body{
+    padding: 25px 0;
+  }
+
+  .wrapper {
+    width: calc(100vw - 50px);
+  }
+
+  //HEADER
+
+  .header{
+    padding: 20px 0;
+  }
+
+  .header .container a {
+    width: 100%;
+  }
+
+  .header__cart{
+    margin-top: 20px;
+  }
+
+  .button--cart{
+    padding: 10px 20px;
+  }
+
+  .categories {
+    width: calc(100vw - 50px);
+    left: 25px;
+  }
+
+  .categories ul {
+    width: calc(100vw - 50px);
+    left: 25px;
+  }
+
+  .sort__label{
+    display: none;
+  }
+
+  .button--sort{
+    display: block;
+  }
+
+  //HOME
+
+  .content{
+    padding: 20px 0;
+  }
+
+  .content__title{
+    margin: 25px 0;
+  }
+
+  .pizza-block {
+    margin-bottom: 45px;
+  }
+
+}
+
+@media(max-width: 411px){
+  .wrapper {
+    width: calc(100vw - 20px);
+  }
+
+  //HEADER
+
+  .header__logo h1{
+    font-size: 20px;
+  }
+
+  .header__logo p {
+    font-size: 14px;
+  }
+
+  .sort__label {
+    max-width: 100%;
+    justify-content: center;
+  }
+
+  .categories {
+    width: calc(100vw - 20px);
+    left: 10px;
+  }
+
+  .categories ul {
+    width: calc(100vw - 20px);
+    left: 10px;
+  }
+
+  //HOME
+
+  .pizza-block__image{
+    width: 200px;
+  }
+}

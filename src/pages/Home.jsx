@@ -1,11 +1,15 @@
 import React from 'react';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import classNames from "classnames";
 
-import { Categories, PizzaBlock, SortPopup, LoadingBlock } from "../components";
+import { Categories, PizzaBlock, SortPopup, LoadingBlock, Button } from "../components";
 import { setCategoryAction } from "../redux/actions/filters";
 import { setSortByAction } from "../redux/actions/filters";
 import { fetchPizzas } from "../redux/actions/pizzas";
+
+import { lockScroll, unlockScroll } from "../utils/lock";
+import { checkAdaptive } from '../utils/adaptive';
 
 const arrayCategory = ["Мясные", "Вегетарианская", "Гриль", "Острые", "Закрытые"];
 const arraySort = [
@@ -27,6 +31,18 @@ const arraySort = [
 ]
 
 function Home() {
+  const [openMenu, setOpenMenu] = useState(false)
+
+  const btnMenuChange = () => {
+    if (openMenu) {
+      unlockScroll();
+      setOpenMenu(false);
+    } else {
+      lockScroll();
+      setOpenMenu(true);
+    }
+  }
+
   const dispatch = useDispatch();
 
   // обращаемся в REDUX store и возвращает props
@@ -58,6 +74,13 @@ function Home() {
   })
 
   useEffect(() => {
+    window.addEventListener('resize', () => {
+      setOpenMenu(checkAdaptive())
+    })
+    setOpenMenu(checkAdaptive())
+  }, [])
+
+  useEffect(() => {
     dispatch(fetchPizzas(category, sortBy))
   }, [dispatch, category, sortBy])
 
@@ -71,6 +94,7 @@ function Home() {
   }, [dispatch]);
 
   const handleAddPizzaToCart = (obj) => {
+    // console.log(obj);
     dispatch({
       type: 'ADD_PIZZA_CART',
       payload: obj,
@@ -80,11 +104,24 @@ function Home() {
   return (
     <div className="container">
       <div className="content__top">
-        <Categories
+
+        <Button
+          // className='button--menu active'
+          className={classNames("button--menu", {
+            'active': openMenu
+          })}
+          onClick={btnMenuChange}
+        >
+          <span></span>
+          <span></span>
+        </Button>
+
+        {openMenu && <Categories
           items={arrayCategory}
           onClickCategory={onSelectCategory}
           activeCategory={category}
-        />
+          setOpenMenu={setOpenMenu}
+        />}
 
         <SortPopup
           objArr={arraySort}

@@ -1,6 +1,8 @@
 import { React, useState, useEffect, useRef, memo } from "react";
 import PropTypes from "prop-types"
 
+import { Button } from "../components/index";
+
 function SortPopup({ objArr, onClickSortBy, activeSort }) {
   const [visiblePopup, setVisiblePopup] = useState(false);
   // const [activeItem, setActiveItem] = useState(0);
@@ -80,6 +82,27 @@ function SortPopup({ objArr, onClickSortBy, activeSort }) {
           {labelActive}
         </span>
       </div>
+
+      <Button
+        className={"button--sort"}
+        onClick={toggleVisiblePopup}
+      >
+        <svg
+          height="20"
+          fill="#ffffff"
+          xmlns="http://www.w3.org/2000/svg"
+          x="0px"
+          y="0px"
+          viewBox="0 0 472.615 472.615"
+        >
+          <g>
+            <g>
+              <polygon points="472.615,12.908 0,12.908 180.081,202.629 180.066,459.708 292.55,401.525 292.534,202.629 		" />
+            </g>
+          </g>
+        </svg>
+      </Button>
+
       {visiblePopup &&
         <div className="sort__popup">
           <ul>

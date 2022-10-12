@@ -1,13 +1,30 @@
-import { React, memo } from 'react'
+import { React, memo, useEffect } from 'react'
 import PropTypes from "prop-types"
 
-function Categories({ items, onClickCategory, activeCategory }) {
+import { getTop } from "../utils/adaptive";
+import { unlockScroll } from "../utils/lock";
+
+function Categories({ items, onClickCategory, activeCategory, setOpenMenu }) {
+
+  const closeMenu = () => {
+    unlockScroll();
+    setOpenMenu();
+  }
+
+  useEffect(() => {
+    getTop();
+  }, [])
 
   return (
-    <div className="categories">
+    <div
+      className="categories"
+    >
       <ul>
         <li
-          onClick={() => { onClickCategory(null) }}
+          onClick={() => {
+            onClickCategory(null)
+            closeMenu()
+          }}
           className={activeCategory === null ? "active" : ""}
         >
           Все</li>
@@ -16,7 +33,10 @@ function Categories({ items, onClickCategory, activeCategory }) {
           <li
             className={activeCategory === index ? "active" : ""}
             key={`${name}_${index}`}
-            onClick={() => onClickCategory(index)}
+            onClick={() => {
+              onClickCategory(index)
+              closeMenu()
+            }}
           //Если просто написать onClick={onClick(name)}, то функция сразу выполнится при рендере компонента, а за тем не будет выполнятся
           //() => {} - каждый раз когда перерендыревается элемент создается новая анонимная функция
           >
@@ -36,6 +56,7 @@ Categories.propTypes = {
   activeCategory: PropTypes.number,
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
   onClickCategory: PropTypes.func.isRequired,
+  setOpenMenu: PropTypes.func.isRequired
 };
 
 Categories.defaultProps = { activeCategory: null, items: [] };

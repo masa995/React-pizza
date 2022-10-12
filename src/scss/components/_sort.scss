@@ -3,9 +3,13 @@
 .sort {
   padding: 10px 0;
   position: relative;
+  z-index: 10;
   &__label {
+    max-width: 250px;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 
     svg {
       margin-right: 8px;
@@ -21,6 +25,7 @@
     }
 
     span {
+      max-width: 250px;
       color: $orange;
       border-bottom: 1px dashed $orange;
       cursor: pointer;
