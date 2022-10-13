@@ -1,3 +1,4 @@
+//вычесляет верхнию координату для позиционирования
 export function getTop() {
   const sort = document.querySelector('.sort');
   const getTop = sort.offsetTop;
@@ -6,8 +7,9 @@ export function getTop() {
   return getTop
 }
 
+//Проверяет breakpoint 1110
 export function checkAdaptive() {
-  if (window.matchMedia('(max-width: 1100px)').matches) {
+  if (window.matchMedia('(max-width: 1110px)').matches) {
     return false
   } else return true
 }

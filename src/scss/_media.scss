@@ -169,6 +169,17 @@
   .cart__bottom-buttons {
     margin-top: 20px;
   }
+
+  //404
+
+  .not-found img{
+    margin-bottom: 30px;
+  }
+
+  .not-found h2{
+      margin-bottom: 40px;
+      font-size: 27px;
+  }
 }
 
 @media(max-width: 630px){
@@ -328,6 +339,12 @@
   .cart__bottom-buttons .pay-btn{
     width: 65%;
   }
+
+  //404
+
+  .not-found img{
+    width: 90%;
+  }
 }
 
 @media(max-width: 410px){
@@ -372,6 +389,10 @@
       width: 95%;
     }
 
+    .cart--empty h2{
+      font-size: 22px;
+    }
+
     .cart--empty p{
       font-size: 16px;
     }
@@ -395,4 +416,10 @@
     .cart__item-price{
       width: 45%;
     }
+
+    //404
+
+    .not-found h2{
+      font-size: 22px;
+  }
 }

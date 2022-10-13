@@ -24,6 +24,7 @@ function CartItem({ id, name, type, size, imageUrl, totalCount, totalPrice, onDe
       </div>
       <div className="cart__item-count">
         <Button
+          arial-label="Удалить одну пиццу"
           className="button--circle cart__item-count-minus"
           onClick={() => onMinusItemCart(objId)}
           outlineStyle>
@@ -35,6 +36,7 @@ function CartItem({ id, name, type, size, imageUrl, totalCount, totalPrice, onDe
         </Button>
         <b>{totalCount}</b>
         <Button
+          arial-label="Добавить одну пиццу"
           className="button--circle cart__item-count-plus"
           onClick={() => onPlusItemCart(objId)}
           outlineStyle>
@@ -50,6 +52,7 @@ function CartItem({ id, name, type, size, imageUrl, totalCount, totalPrice, onDe
       </div>
       <div className="cart__item-remove">
         <Button
+          arial-label="Удалить все пиццы"
           className="button--circle"
           onClick={() => onDeleteItemCart(objId)}
           outlineStyle

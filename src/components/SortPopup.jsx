@@ -84,6 +84,7 @@ function SortPopup({ objArr, onClickSortBy, activeSort }) {
       </div>
 
       <Button
+        arial-label="Фильтр"
         className={"button--sort"}
         onClick={toggleVisiblePopup}
       >

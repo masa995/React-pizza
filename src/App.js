@@ -1,8 +1,8 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import { Header } from "./components"
-import { Home, Cart } from "./pages"
+import { Home, Cart, NotFound } from "./pages"
 
 import "./scss/app.scss"
 
@@ -43,8 +43,11 @@ function App() {
           <Home
             items={pizzas}
           />} /> */}
-        <Route exact path="/" component={Home} />
-        <Route exact path="/cart" component={Cart} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/cart" component={Cart} />
+          <Route path="*" component={NotFound} />
+        </Switch>
       </div>
     </div>
   );

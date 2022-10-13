@@ -11,6 +11,7 @@ function Categories({ items, onClickCategory, activeCategory, setOpenMenu }) {
     setOpenMenu();
   }
 
+  //вычесляет верхнию координату для позиционирования Categories
   useEffect(() => {
     getTop();
   }, [])

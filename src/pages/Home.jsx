@@ -73,6 +73,7 @@ function Home() {
     }
   })
 
+  //определяет как отображать Categories
   useEffect(() => {
     window.addEventListener('resize', () => {
       setOpenMenu(checkAdaptive())
@@ -107,6 +108,7 @@ function Home() {
 
         <Button
           // className='button--menu active'
+          arial-label="Кнопка меню"
           className={classNames("button--menu", {
             'active': openMenu
           })}
