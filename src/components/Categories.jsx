@@ -11,7 +11,6 @@ function Categories({ items, onClickCategory, activeCategory, setOpenMenu }) {
     setOpenMenu();
   }
 
-  //вычесляет верхнию координату для позиционирования Categories
   useEffect(() => {
     getTop();
   }, [])
@@ -38,8 +37,6 @@ function Categories({ items, onClickCategory, activeCategory, setOpenMenu }) {
               onClickCategory(index)
               closeMenu()
             }}
-          //Если просто написать onClick={onClick(name)}, то функция сразу выполнится при рендере компонента, а за тем не будет выполнятся
-          //() => {} - каждый раз когда перерендыревается элемент создается новая анонимная функция
           >
             {name}
           </li>
@@ -48,10 +45,6 @@ function Categories({ items, onClickCategory, activeCategory, setOpenMenu }) {
     </div>
   )
 }
-
-// React.memo является компонентом более высокого порядка.
-
-// Если ваш компонент отображает тот же результат с использованием тех же пропсов, вы можете обернуть его в вызов React.memo для повышения производительности в некоторых случаях путем запоминания результата.
 
 Categories.propTypes = {
   activeCategory: PropTypes.number,

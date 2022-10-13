@@ -8,8 +8,8 @@ function PizzaBlock({ id, imageUrl, name, price, sizes, types, addPizzaToCart, c
   const availableSize = [26, 30, 40];
   const availableType = ["тонкое", "традиционное"];
 
-  const [activeTypes, setActiveTypes] = useState(types[0]) //первый элемент в массиве types
-  const [activeSizes, setActiveSizes] = useState(sizes[0]) //первый элемент в массиве sizes
+  const [activeTypes, setActiveTypes] = useState(types[0])
+  const [activeSizes, setActiveSizes] = useState(sizes[0])
 
   const selectActiveType = (index) => {
     setActiveTypes(index)
@@ -47,8 +47,8 @@ function PizzaBlock({ id, imageUrl, name, price, sizes, types, addPizzaToCart, c
               key={`${type}_${index}`}
               onClick={() => (selectActiveType(index))}
               className={classNames({
-                active: activeTypes === index, // переключение активного элемента
-                disabled: !types.includes(index) //если в массиве с сервера нет данного элемента ставим disabled
+                active: activeTypes === index,
+                disabled: !types.includes(index)
               })}
             >
               {type}</li>
@@ -56,7 +56,6 @@ function PizzaBlock({ id, imageUrl, name, price, sizes, types, addPizzaToCart, c
         </ul>
         <ul>
           {availableSize.map((size, index) => (
-            // console.log(type, index),
             <li
               key={`${size}_${index}`}
               onClick={() => selectActiveSize(size)}
@@ -101,8 +100,8 @@ PizzaBlock.propTypes = {
   name: PropTypes.string,
   imageUrl: PropTypes.string,
   price: PropTypes.object,
-  types: PropTypes.arrayOf(PropTypes.number), //массив чисел
-  sizes: PropTypes.arrayOf(PropTypes.number), //массив чисел
+  types: PropTypes.arrayOf(PropTypes.number),
+  sizes: PropTypes.arrayOf(PropTypes.number),
   addPizzaToCart: PropTypes.func,
   cartAddedCount: PropTypes.number
 };

@@ -45,16 +45,12 @@ function Home() {
 
   const dispatch = useDispatch();
 
-  // обращаемся в REDUX store и возвращает props
-  //вызывает ререндр
   const { items } = useSelector((state) => {
-    //(state.pizzas.items);
     return {
       items: state.pizzas.items,
     }
   })
   const { isLoaded } = useSelector((state) => {
-    // console.log(state.pizzas.isLoaded)
     return {
       isLoaded: state.pizzas.isLoaded
     }
@@ -73,7 +69,6 @@ function Home() {
     }
   })
 
-  //определяет как отображать Categories
   useEffect(() => {
     window.addEventListener('resize', () => {
       setOpenMenu(checkAdaptive())
@@ -95,7 +90,6 @@ function Home() {
   }, [dispatch]);
 
   const handleAddPizzaToCart = (obj) => {
-    // console.log(obj);
     dispatch({
       type: 'ADD_PIZZA_CART',
       payload: obj,
@@ -107,7 +101,6 @@ function Home() {
       <div className="content__top">
 
         <Button
-          // className='button--menu active'
           arial-label="Кнопка меню"
           className={classNames("button--menu", {
             'active': openMenu

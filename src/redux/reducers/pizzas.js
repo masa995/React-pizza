@@ -8,7 +8,7 @@ const pizzas = (state = initialState, action) => {
   switch (action.type) {
     case "SET_PIZZAS":
       return {
-        ...state, //неглубокое копированиие
+        ...state,
         items: action.payload,
         isLoaded: true
       }

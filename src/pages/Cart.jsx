@@ -52,6 +52,7 @@ function Cart() {
             </svg>
               Корзина</h2>
             <Button
+              arial-label="Очистеть корзину"
               className="cart__clear"
               onClick={handleClearCart}
               tranperentStyle

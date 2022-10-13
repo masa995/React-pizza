@@ -1,6 +1,3 @@
-//создаем функции которая возвращает новый объект
-//создаем новый экшен
-
 export const setPizzasAction = (items) => ({
   type: "SET_PIZZAS",
   payload: items

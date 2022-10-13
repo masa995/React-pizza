@@ -1,13 +1,13 @@
 
 export function lockScroll() {
-  let pagePosition = window.scrollY; //сохраняем координаты на котором мы находились
-  document.body.classList.add('disable-scroll'); //выключаем скролл
-  document.body.dataset.position = pagePosition; //передаем в боди новый атребут
-  document.body.style.top = -pagePosition; //убираем прыжок при применение стилей
+  let pagePosition = window.scrollY;
+  document.body.classList.add('disable-scroll');
+  document.body.dataset.position = pagePosition;
+  document.body.style.top = -pagePosition;
 }
 
 export function unlockScroll() {
-  let pagePosition = parseInt(document.body.dataset.position, 10); //перевод в число позиции из атребота
+  let pagePosition = parseInt(document.body.dataset.position, 10);
   document.body.style.top = 'auto';
   document.body.classList.remove('disable-scroll');
   window.scroll({ top: pagePosition, left: 0 });

@@ -5,10 +5,13 @@ const initialState = {
   countTypesOfId: {}
 };
 
+//Возвращает id 
 const getIdPizzaItem = ({ id, type, size }) => `${id}_${type}_${size}`
 
-const getTotalPrice = (arr) => arr.reduce((sum, obj) => obj.price + sum, 0); //общая цена
+//Возвращает общую цену
+const getTotalPrice = (arr) => arr.reduce((sum, obj) => obj.price + sum, 0);
 
+//Возвращает количество обЪектов по определенному ключу (id)
 const getCountTypesOfId = (arr, number) => {
   const result = Object.entries(arr).reduce((sum, el) => {
     if (Number.parseInt(el[0].charAt(0)) === number) {
@@ -19,11 +22,12 @@ const getCountTypesOfId = (arr, number) => {
   return result
 }
 
+//Уменьшает определенное значение свойства в обЪекте. Если это значение меньше 0, то удаляет свойство полностью из объекта
 const deleteCountTypesOfId = (action, state) => {
   const idItem = getIdPizzaItem(action.payload);
-  const deleteItemCount = state.items[idItem].arrPizza.length; //количество пицц определенного размера и типа
+  const deleteItemCount = state.items[idItem].arrPizza.length;
 
-  const valCurrentCountType = state.countTypesOfId[action.payload.id] //количетво пицц определенного ID
+  const valCurrentCountType = state.countTypesOfId[action.payload.id]
   const newValCountType = valCurrentCountType - deleteItemCount;
 
   if (newValCountType > 0) {
@@ -41,11 +45,12 @@ const deleteCountTypesOfId = (action, state) => {
   }
 }
 
+//Удаляет объект из объекта объектов itemы и обновляет state
 const deleteItemCart = (action, state) => {
   const idItem = getIdPizzaItem(action.payload);
 
-  const deleteItemCount = state.items[idItem].arrPizza.length; //количество пицц определенного размера и типа
-  const deleteItemPrice = state.items[idItem].totalPrice; //цена за пиццы определенного размера и типа
+  const deleteItemCount = state.items[idItem].arrPizza.length;
+  const deleteItemPrice = state.items[idItem].totalPrice;
 
   const newCount = state.totalCount - deleteItemCount;
   const newPrice = state.totalPrice - deleteItemPrice;
@@ -67,7 +72,6 @@ const deleteItemCart = (action, state) => {
 const cart = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_PIZZA_CART": {
-      //копируем весь state, копируем items из state(...state.items), если в items НЕТ ЭЛЕМЕНТА С НУЖНЫМ, то создаем новый массив ([action.payload]), а если есть элементы, то их тоже копируем а далее добавляем новый экшн action.payload
       const currentPizzas = !state.items[`${action.payload.id}_${action.payload.type}_${action.payload.size}`]
         ? [action.payload]
         : [...state.items[`${action.payload.id}_${action.payload.type}_${action.payload.size}`].arrPizza, action.payload]
@@ -80,19 +84,16 @@ const cart = (state = initialState, action) => {
         },
       };
 
-      const currentCount = !state.countTypesOfId[action.payload.id] ? 1 : getCountTypesOfId(newItems, action.payload.id) //сначала новое значение
+      const currentCount = !state.countTypesOfId[action.payload.id] ? 1 : getCountTypesOfId(newItems, action.payload.id)
       const newCountType = {
         ...state.countTypesOfId,
         [action.payload.id]: currentCount,
-      } //потом новый объект
+      }
 
-      //Object.values(obj) – возвращает массив значений.
-      //получаем из массива объектов, массив массивов
+      //Object.values(obj) – возвращает массив значений. Получаем из массива объектов, массив массивов
       const arrPizza = Object.values(newItems).map(obj => obj.arrPizza);
       //flat() - метод создает новый массив со всеми элементами подмассива, объединенными в него рекурсивно до указанной глубины.
       const allPizzas = arrPizza.flat();
-      //const allPizzas = [].concat.apply([], Object.values(newItems))//массив из всех всех пицц
-      //const number = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
       return {
         ...state,
@@ -160,15 +161,6 @@ const cart = (state = initialState, action) => {
         const newTotalPrice = state.totalPrice - arrPizzaNew[0].price;
         const newTotalCount = state.totalCount - 1;
 
-        // let newCountType = {}
-        // if (valCurrentCountTypeID - 1 > 0) {
-        //   newCountType = {
-        //     ...state.countTypesOfId,
-        //     [action.payload.id]: valCurrentCountTypeID - 1
-        //   }
-        // } else {
-        //   newCountType = deleteCountTypesOfId(state, action);
-        // }
         return {
           ...state,
           items: newItems,

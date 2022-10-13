@@ -1,4 +1,3 @@
-//Начальное состояние
 const initialState = {
   category: null,
   sortBy: {
@@ -7,17 +6,16 @@ const initialState = {
   }
 }
 
-//редусер
 const filters = (state = initialState, action) => {
   switch (action.type) {
     case "SET_SORT_BY":
       return {
-        ...state, //неглубокое копированиие
+        ...state,
         sortBy: action.payload
       }
     case "SET_CATEGORY":
       return {
-        ...state, //неглубокое копированиие
+        ...state,
         category: action.payload
       }
     default:

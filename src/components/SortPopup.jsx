@@ -5,54 +5,26 @@ import { Button } from "../components/index";
 
 function SortPopup({ objArr, onClickSortBy, activeSort }) {
   const [visiblePopup, setVisiblePopup] = useState(false);
-  // const [activeItem, setActiveItem] = useState(0);
   const sortRef = useRef(); //сохраняет ссылку на эл. sort
   const labelActive = objArr.find((obj) => obj.type === activeSort.type).name;
-
-  //СТАРОЕ
-  // const labelActive = objArr[activeItem].name //переменная в которой хранится название выбраного элемента 
 
   const toggleVisiblePopup = () => {
     setVisiblePopup(!visiblePopup)
   }
 
   const selectItem = (obj) => {
-    // setActiveItem(index);
     onClickSortBy(obj)
     setVisiblePopup(false);
   }
 
   const handleOutsideClick = (e) => {
-    //2 ВАРИАНТ!
-    // Метод closest ищет ближайший родительский элемент, подходящий под указанный CSS селектор, при этом сам элемент тоже включается в поиск.
-
-    // if (!e.target.closest('.sort')) {
-    //   setVisiblePopup(false);
-    // }
-
-    // console.log(e, sortRef.current, { currentTarget: e.currentTarget }, { target: e.target });
-
     const path = e.path || e.composedPath();
     if (!path.includes(sortRef.current)) {
       setVisiblePopup(false);
     }
   }
 
-  //вешает слушатель на всю страницу когда она отрендерилась
   useEffect(() => {
-    /*
-Используя этот хук, вы говорите React сделать что-то после рендера. React запомнит функцию (то есть «эффект»), которую вы передали и вызовет её после того, как внесёт все изменения в DOM. 
- 
-Первый аргумент — это функция обратного вызова, которая по умолчанию запускается после каждого отображения.
- 
-Второй аргумент — это опциональный массив зависимостей, который указывает хуку сколько раз нужно выполнять данный хук. Пустой массив значит вызывается функция один раз. 
-*/
-
-    /**
-     * [] - вызывается один раз при RENDERE
-     * [activeItem] - следит за изменениями activeItem
-     */
-
     document.body.addEventListener('click', handleOutsideClick);
   }, [])
 
