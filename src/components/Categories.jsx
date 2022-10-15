@@ -3,12 +3,15 @@ import PropTypes from "prop-types"
 
 import { getTop } from "../utils/adaptive";
 import { unlockScroll } from "../utils/lock";
+import { checkAdaptive } from "../utils/adaptive";
 
 function Categories({ items, onClickCategory, activeCategory, setOpenMenu }) {
 
   const closeMenu = () => {
-    unlockScroll();
-    setOpenMenu();
+    if (!checkAdaptive(1110)) {
+      unlockScroll();
+      setOpenMenu();
+    }
   }
 
   useEffect(() => {

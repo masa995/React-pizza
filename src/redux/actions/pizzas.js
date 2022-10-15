@@ -1,3 +1,5 @@
+import { url } from '../constants';
+
 export const setPizzasAction = (items) => ({
   type: "SET_PIZZAS",
   payload: items
@@ -11,7 +13,7 @@ export const setLoadedAction = (booleanKey) => ({
 //redux-thunk
 export const fetchPizzas = (category, sortBy) => (dispatch) => {
   dispatch(setLoadedAction(false)); // пока контент не загрузился ставим заглушку
-  fetch(`/pizzas?${category !== null ? `category=${category}` : ''}&_sort=${sortBy.type}&_order=${sortBy.order}`)
+  fetch(`${url}?${category !== null ? `category=${category}` : ''}&sortBy=${sortBy.type}&order=${sortBy.order}`)
     .then((response) => response.json()).then((json) => {
       dispatch(setPizzasAction(json)) //сохроняем состояние в store
     })

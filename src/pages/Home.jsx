@@ -14,12 +14,12 @@ import { checkAdaptive } from '../utils/adaptive';
 const arrayCategory = ["Мясные", "Вегетарианская", "Гриль", "Острые", "Закрытые"];
 const arraySort = [
   {
-    type: "popular",
+    type: "rating",
     name: "популярности",
     order: "desc"
   },
   {
-    type: "price",
+    type: "sortPrice",
     name: "цене",
     order: "desc"
   },

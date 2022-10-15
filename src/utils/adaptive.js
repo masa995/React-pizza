@@ -8,8 +8,8 @@ export function getTop() {
 }
 
 //Проверяет breakpoint 1110
-export function checkAdaptive() {
-  if (window.matchMedia('(max-width: 1110px)').matches) {
+export function checkAdaptive(widthMax) {
+  if (window.matchMedia(`(max-width: ${widthMax}px)`).matches) {
     return false
   } else return true
 }
