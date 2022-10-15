@@ -70,10 +70,12 @@ function Home() {
   })
 
   useEffect(() => {
-    window.addEventListener('resize', () => {
-      setOpenMenu(checkAdaptive())
-    })
-    setOpenMenu(checkAdaptive())
+    if (checkAdaptive(1110)) {
+      setOpenMenu(true)
+    } else {
+      setOpenMenu(false)
+    }
+
   }, [])
 
   useEffect(() => {
